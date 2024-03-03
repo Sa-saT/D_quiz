@@ -3,7 +3,8 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  css: ['vuetify/lib/styles/main.sass'],
+  css: ['vuetify/lib/styles/main.sass',
+    '@mdi/font/css/materialdesignicons.css'],
   build: {
     transpile: ['vuetify'],
   },
@@ -21,10 +22,18 @@ export default defineNuxtConfig({
     storesDirs: ['./stores/**', './custom-folder/stores/**'],
   },
   vite: {
-    vue: {
-      template: {
-        transformAssetUrls,
+    // HMR の問題 ngrok
+    // https://techlog.n2i.jp/entry/2023/10/10/094549
+    server: {
+      hmr: {
+        host: 'localhost',
       },
     },
+  
+    // vue: {
+    //   template: {
+    //     transformAssetUrls,
+    //   },
+    // },
   }
 })
