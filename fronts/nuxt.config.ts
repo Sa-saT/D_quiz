@@ -1,7 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// https://developer.mamezou-tech.com/nuxt/nuxt3-rendering-mode/
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
+  ssr: false,
   devtools: { enabled: true },
   css: ['vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.css'],
@@ -10,7 +12,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@pinia/nuxt',
-    (options, nuxt) => {
+    (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
@@ -30,10 +32,10 @@ export default defineNuxtConfig({
       },
     },
   
-    // vue: {
-    //   template: {
-    //     transformAssetUrls,
-    //   },
-    // },
+    vue: {
+      template: {
+        transformAssetUrls,
+      },
+    },
   }
 })
