@@ -1,7 +1,0 @@
-・十分なテストコード
-・認証
-・AUTH
-・レベル分け
-・SPA
-
-voltaでのnode,npm,yarn管理
