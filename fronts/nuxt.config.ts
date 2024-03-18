@@ -5,7 +5,11 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 
 export default defineNuxtConfig({
-  ssr: false,
+  routeRules: {
+    // spa&ssg_setting
+    "/spa": {ssr: false},
+    "/ssg": {prerender: true}
+  },
   devtools: { enabled: true },
   css: ['vuetify/lib/styles/main.sass',
     '@mdi/font/css/materialdesignicons.css'],
