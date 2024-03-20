@@ -6,7 +6,7 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 export default defineNuxtConfig({
   routeRules: {
-    // spa&ssg_setting
+    // spa,ssg_setting
     "/spa": {ssr: false},
     "/ssg": {prerender: true}
   },
@@ -17,7 +17,9 @@ export default defineNuxtConfig({
     transpile: ['vuetify'],
   },
   modules: [
+    // add pinia
     '@pinia/nuxt',
+    // vuetify's_setting
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
         // @ts-expect-error
