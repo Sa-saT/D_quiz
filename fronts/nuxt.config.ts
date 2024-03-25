@@ -11,8 +11,10 @@ export default defineNuxtConfig({
     "/ssg": {prerender: true}
   },
   devtools: { enabled: true },
-  css: ['vuetify/lib/styles/main.sass',
-    '@mdi/font/css/materialdesignicons.css'],
+  css: [
+    'vuetify/lib/styles/main.sass',
+    '@mdi/font/css/materialdesignicons.css'
+  ],
   build: {
     transpile: ['vuetify'],
   },
