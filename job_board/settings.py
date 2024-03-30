@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+from datetime import timedelta 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -31,7 +32,7 @@ DEBUG_is_True
 """
 DEBUG = False
 
-# # app's_server's_domain
+# app's_server's_domain
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 
 try:
@@ -41,6 +42,21 @@ except ImportError:
 
 if not DEBUG:
     SECRET_KEY = os.environ['SECRET_KEY']
+
+# simpleJWT's_DEFAULT_setting
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
 
 # Application definition
 
@@ -52,6 +68,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',#add
+    'corsheaders',#add
     'accounts',#add
     'api'#add
 ]
@@ -64,6 +81,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',# add
 ]
 
 ROOT_URLCONF = 'job_board.urls'
@@ -141,3 +159,12 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# CORS
+# DRF_textbook_states'False'
+# 一旦全て"True"で起動確認
+CORS_ALLOW_ALL_ORIGINS = True 
+CROS_ALLOWS_CREDENTIALS = True
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:5173',
+# ]
