@@ -32,6 +32,7 @@ DEBUG_is_True
 """
 DEBUG = False
 
+# ALLOWED_HOSTS = ["*"]
 # app's_server's_domain
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOSTS')]
 
@@ -46,6 +47,7 @@ if not DEBUG:
 # simpleJWT's_DEFAULT_setting
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
+        # JWT認証
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
     "DEFAULT_PERMISSION_CLASSES": [
